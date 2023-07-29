@@ -1,0 +1,70 @@
+.main--admin{
+    max-width: 75em;
+    margin: 0 auto;
+
+    &__title{
+
+    }
+    &__btn{
+        display: block;
+        margin: 2em 0;
+    }
+    &__contenedor{
+        display: flex;
+        justify-content: center;
+        .formulario, .preview{
+            flex: 1;
+        }
+
+        .card--burger{
+            margin:   auto;
+        }
+
+
+    }
+    
+}
+
+.table{
+    width: 100%;
+    border-spacing: 0 5px;
+    color: $color--white;
+    font-family: $font--text;
+    text-align: center;
+    font-size: 1.2em;
+    &__name, &__name--head{
+        
+        padding: 1em;
+    }
+
+    &__name--head{
+        background-color:$color--black;
+    }
+
+    &__producto{
+        background-color: $color--primary;
+    }
+
+    &__img{
+        width: 10rem;
+    }
+
+    &__btn{
+        display: flex;
+        flex-direction: column;
+        gap: .5em;
+        .boton{
+            display: block;
+            width: auto;
+
+            input[type="submit"]{
+                border: none;
+                background-color: transparent;
+                color: $color--white;
+                font-family: $font--title;
+                cursor: pointer;
+            }
+        }
+        
+    }
+}

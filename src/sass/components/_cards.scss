@@ -1,0 +1,300 @@
+.card--burger{
+    background-color: $color--black;
+    padding: 2em;
+    border-radius: 10px;
+    height: 11em;
+    width:15em;
+    transition: .5s ease all;
+    cursor: pointer;
+    &__title{
+        font-size: 2em;
+        margin: 0;
+        color: $color--white;
+        text-align: center;
+        transition: .5s ease all;
+    }
+    &__description{
+        display: -webkit-box;
+        color: $color--white;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+    }
+    &__price{
+        font-family: $font--title;
+        color: $color--primary;
+        font-size: 2em;
+        margin-left: 2em;
+    }
+
+    .contenedor__img{
+        width: 8em;
+        height: .5em;
+        display: flex;
+        justify-content: center;
+    
+    }
+
+    &__img{
+        opacity: 1;
+        box-shadow: 0 0 0 black;
+        width: 12em;
+        height: 9.5em;
+        position: relative;
+        top: -4em;
+        left: -1.5em;
+        filter: drop-shadow(0 5px 4px rgba(48, 48, 48, 0.8));
+        transition: .5s ease all;
+    }
+
+    &:hover{
+        transition: .5s ease all;
+        box-shadow: 0 2px 5px $color--primary;
+        .card--burger__title{
+            color: $color--primary;
+            transition: .5s ease all;
+        }
+        .card--burger__img{
+            opacity: .7;
+            width: 10em;
+            height: 7.5em;
+            top: -2em;
+            transition: .5s ease all;
+        }
+    
+    }
+}
+
+.modal--burger{
+    transition: all .3s ease;
+    visibility: hidden;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color--black, 0);
+
+    &__contenedor{
+        background-color: $color--black;
+        border-radius: 10px;
+        display: flex;
+        width: 100%;
+        max-width: 60em;
+        max-height: 32em;
+        padding: 1em;
+        box-shadow: 0 0 13px #1b1b1b;
+    }
+    &__close{
+        
+        display: flex;
+        width: 2em;
+        font-size: 1.5em;
+        height: 2em;
+        color: $color--primary;
+        position: relative;
+        left: 95%;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        
+    }
+    &__contenedor--img{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__img{
+        width: 80%;
+        filter: drop-shadow(0 5px 4px rgba(48, 48, 48, 0.85));
+
+    }
+    &__contenedor--info{
+        flex: 1;
+        padding: 1.5em;
+    }
+    &__title{
+        color: $color--white;
+        margin: .25em 0;
+    }
+    &__price{
+        color: $color--primary;
+        font-size: 2.4em;
+        font-family: $font--title;
+      
+    }
+    &__description{
+        color: $color--white;
+        font-size: 1.2em;
+    }
+    &__formulario{
+        &__contenedor{
+            display: flex;
+            gap: 2em;
+            align-items: center;
+            justify-content: space-between;
+        }
+    
+        &__input{
+            padding: 0.75em;
+            border-radius: 10px;
+            width: 8em;
+            border: none;
+            font-family: $font--text;
+        }
+
+        &__precio{
+            color: $color--primary;
+            font-size: 2em;
+            font-family: $font--title;
+            margin-right: 2em;
+        }
+
+        &__botones{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: .95em;
+        }
+
+        .boton{
+            width: auto;
+        }
+    
+
+    }   
+    @include desktop {
+
+        &__contenedor{
+            flex-direction: column;
+            max-height: none;
+            max-width: 35em;
+        }
+        &__img{
+            max-width: 18em;
+    
+        }
+        &__close{
+        
+            left: 90%;
+
+            
+        }
+
+        &__formulario{
+
+            &__botones{
+                flex-direction: column;
+                gap: .5em;
+            }
+
+            .boton{
+                width: 100%;
+
+                &:last-child{
+                    width: calc(100% - 1.9em);
+                }
+            }
+        }
+
+        
+
+        
+    }
+    @include movil {
+        &__img{
+            max-width: 10em;
+    
+        }
+
+        &__title{
+            font-size: 2em;
+        }
+        &__price{
+            font-size: 1.8em;
+          
+        }
+        &__description{
+            font-size: 1em;
+        }
+
+        &__formulario{
+            &__precio{
+
+                font-size: 1.4em;
+                margin: 1em 0;
+
+            }
+        }
+    }
+
+}
+.modal--burger.active{
+    visibility: visible;
+    position: fixed;
+    background-color: rgba($color--black, .9);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    z-index: 10;
+
+    transition: all .3s ease;
+
+
+}
+
+.card--restaurante{
+    background-color: $color--black;
+    border-radius: 10px;
+    height: 13.5em;
+    display: flex;
+    gap: 1em;
+    overflow: hidden;
+    max-width: 45em;
+    &__info{
+        padding: 1em;
+
+    }
+
+    &__img{
+        
+        img{
+            width: 18em;
+            height: 100%;
+           
+        }
+    }
+    
+    &__title, &__direction,&__description{
+        color: $color--white;
+    }
+    &__title{
+        margin: 0;
+        font-size: 2em;
+    }
+    &__direction{
+        font-family: $font--title;
+        font-size: 1.4em;
+        margin-bottom: 1em;
+    }
+    &__description{
+        font-size: .8em;
+    }
+
+    @include tablet{
+        flex-direction: column;
+        height: auto;
+        max-width: 25em;
+        &__img{
+        
+            img{
+                width: 100%;
+                height: 100%;
+               
+            }
+        }
+    }
+}

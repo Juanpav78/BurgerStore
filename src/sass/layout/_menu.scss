@@ -1,0 +1,15 @@
+.menu{
+    background-color: $color--white;
+    padding-bottom: 4em;
+    .menu__title{
+        text-align: center;
+    }
+
+    .menu__contenedor{
+        display: grid;
+        justify-items: center;
+        grid-template-columns: repeat(auto-fit, minmax(23em, 1fr));
+        gap: 2em;
+        row-gap: 4em;
+    }
+}

@@ -1,0 +1,20 @@
+.alert{
+    color: $color--white;
+    font-size: 1.2em;
+    font-family: $font--text;
+    font-weight: 900;
+    padding: 1em;
+    text-align: center;
+    margin: .5em auto;
+    text-transform: uppercase;
+    border-radius: 10px;
+    max-width: 30em;
+    &.warning{
+        background-color: darken($color--secondary, 15%);
+    }
+
+    &.success{
+        background-color: darken($color--green, 15%);
+    }
+}
+

@@ -1,0 +1,46 @@
+
+.banner{
+    background-color: $color--secondary;
+    &__contenedor{
+        max-width: none;
+        width: 80%;
+        display: flex;
+        padding: 2em 0;
+        justify-content: space-between;
+    }
+    &__burger{
+        display: flex;
+        align-items: center; 
+    }
+
+    &__text{
+        color: $color--white;
+        margin-bottom: 0;
+        text-shadow: 0 4px 4px rgba(31, 31, 31, 0.582);
+    }
+
+    &__title{
+        color: $color--primary;
+        -webkit-text-stroke: 1px $color--white;
+        font-weight: 600;
+        font-size: 4em;
+        margin: .5em 0;
+        text-shadow: 0 4px 4px rgba(31, 31, 31, 0.582);
+    }
+
+    &__img{
+        width: 100%;
+            max-width: 38em;
+    }
+    &__info{
+        text-align: center;
+    }
+
+    @include tablet {
+
+        &__contenedor{
+            flex-direction: column;
+        }
+    }
+
+}

@@ -1,0 +1,83 @@
+.header{
+    width: 100%;
+    background-color: $color--black;
+
+    &__contenedor{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5em 0;
+    }
+    &__logo{
+        width: 5em;
+    }
+    &__img{
+        width: 100%;
+        filter: invert(1);
+    }
+    &__nav{
+        display: flex;
+        gap: 1em;
+
+        &__link{
+            color: $color--white;
+            flex: 1;
+            padding: 1em .5em;
+            &:hover{
+                color: $color--primary;
+                transition: .3s ease;
+            }
+    
+        }
+    }
+    &__btn{
+        display: none;
+        position: fixed;
+        z-index: 10;
+        bottom: 1.5em;
+        right: 1em;
+
+       
+    } 
+
+    @include movil {
+        &__contenedor{
+            justify-content: center;
+        }
+        &__nav{
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            text-align: center;
+
+            bottom: -100%;
+            left: 0;
+
+            transition: all .3s ease;
+            visibility: hidden;
+            z-index: 10;
+            &.active{
+                transition: all .3s ease;
+                bottom: 0;
+                background-color: $color--primary;
+                visibility: visible;
+                .header__nav__link{
+                    &:hover{
+                        color: $color--black;
+                        background-color: $color--secondary;
+                        transition: .3s ease;
+                    }
+                }
+            }
+            
+        }
+        &__btn{
+            display: block;
+            &.active{
+                background-color: $color--secondary;
+            }
+        } 
+    }
+}
+

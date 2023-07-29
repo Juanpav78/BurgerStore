@@ -1,0 +1,67 @@
+.formulario{
+    background-color: $color--black;
+    color: $color--white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    font-family: $font--text;
+    font-size: 1.2em;
+    padding: 1.2em 1em;
+    max-width: 30em;
+    margin: 0 auto;
+    &__fs{
+        border: none;
+        display: flex;
+        flex-direction: column;
+        padding:1em;
+        width: 100%;
+    }
+    &__legend{
+        padding: .2em .5em;
+        border-left:.5em $color--primary solid;
+        font-size: 1.2em;
+        
+    }
+    &__label,&__input{
+        padding: .5em;
+        border: none;
+        border-radius: 10px;
+
+    }
+
+    &__input[type="file"]{
+        border: 1px solid $color--white;
+        display: inline-block;
+        width: 100%;
+        cursor: pointer;
+    }
+
+    
+    &__img{
+        width: 10rem;
+    }
+    &__btn{
+        border: none;
+        background-color: $color--green;
+        font-size: 1.2em;
+        width: 10em;
+
+    }
+}
+
+.formulario--login{
+    .formulario__label,.formulario__input{
+        width: 80%;
+
+    }
+    .formulario__img{
+        filter: invert(1);
+        width: 15em;
+    }
+    .formulario__btn{
+        width: 10em;
+        background-color: $color--primary;
+        margin: 1em 0;
+    }
+}

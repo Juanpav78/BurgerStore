@@ -1,0 +1,22 @@
+{
+    "name": "juanp/burguer-store",
+    "description": "Tienda de hamburguesas con POO",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Juanp\\BurguerStore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Juanpav78",
+            "email": "juanpav.78d@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload-dev": {
+        "psr-4": {
+            "App\\" : "./classes"
+        }
+    }
+}

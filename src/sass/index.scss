@@ -1,0 +1,25 @@
+@import 'base/normalize';
+@import 'base/variables';
+@import 'base/globales';
+@import 'base/mixins';
+
+//components
+@import 'components/cards';
+@import 'components/alerta';
+@import 'components/formulario';
+@import 'components/cart';
+//layout
+@import 'layout/header';
+
+@import 'layout/home';
+@import 'layout/menu';
+@import 'layout/banner';
+@import 'layout/findus';
+@import 'layout/domicilio';
+@import 'layout/restaurante';
+
+@import 'layout/footer';
+
+//admin
+@import 'admin/login';
+@import 'admin/crear';

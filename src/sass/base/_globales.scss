@@ -1,0 +1,92 @@
+body{
+    background-color: $color--white;
+}
+h1,h2,h3,h4{
+    font-family: $font--title;
+    color: $color--black;
+    font-weight: 400;
+    font-size: 3em;
+}
+a{
+    font-family: $font--title;
+    text-decoration: none;
+    font-weight: 400;
+}
+
+p, span{
+    font-family: $font--text;
+}
+
+.boton{
+    width: 6em;
+    border: none;
+    text-align: center;
+    padding: .5em 1em;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgba(43, 43, 43, 0.8);
+    cursor: pointer;
+    color: $color--white;
+    font-size: 1.4em;
+    font-family: $font--title;
+
+    &:hover{
+        box-shadow: 0 2px 2px rgba(43, 43, 43, 0.8);
+    }
+
+
+}
+
+
+
+.boton--red{
+    background-color: $color--secondary;
+    &:hover{
+        background-color: darken($color--secondary, 20%);
+        transition: .3s ease-in-out;
+    }
+}
+
+.boton--green{
+    background-color: $color--green;
+     &:hover{
+        background-color: darken($color--green, 20%);
+        transition: .3s ease-in-out;
+    }
+}
+
+.boton--yellow{
+    background-color: $color--primary;
+     &:hover{
+        background-color: darken($color--primary, 20%);
+        transition: .3s ease-in-out;
+    }
+}
+
+.boton--menu{
+    display: block;
+    margin: 3em auto 1em auto;
+    text-align: center;
+}
+
+.boton--circle{
+    border: none;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    background-color: $color--primary;
+    font-size: 2.4em;
+    padding: .4em;
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(43, 43, 43, 0.8);
+    transition: .3s all ease-in;
+    &:hover{
+        background-color: $color--secondary;
+        transition: .3s all ease-in;
+        color: $color--white;
+        box-shadow: 0 4px 4px rgba(128, 28, 28, 0.8);
+    }
+}
+.header__contenedor,.home__contenedor,.menu__contenedor,.banner__contenedor,.findUs__contenedor,.footer__contenedor{
+    max-width: 75em;
+    width: 100%;
+    margin: 0 auto;
+}

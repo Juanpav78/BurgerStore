@@ -1,0 +1,24 @@
+.findUs{
+    
+    &__contenedor{
+    display: flex;
+
+        .domicilio{
+            flex: 1;
+
+        }
+
+        .restaurantes{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1em;
+        }
+    }
+
+    @include desktop{
+        &__contenedor{
+            flex-direction: column-reverse;
+        }
+    }
+}
