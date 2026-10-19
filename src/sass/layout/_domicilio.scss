@@ -1,3 +1,5 @@
+@use "../base/variables";
+
 .domicilio{
     display: flex;
     flex-direction: column;
@@ -11,16 +13,22 @@
         width: 100%;
     }
     &__contacto{
-        background-color: $color--black;
-        color: $color--white;
+        background-color: variables.$color--black;
+        color: variables.$color--white;
         padding: 1em;
         width: 15em;
         border-radius: 10px;
         text-align: center;
+        box-shadow: 0 4px 10px rgba(43, 43, 43, .3);
+        transition: box-shadow .3s ease, translate .3s ease;
+        &:hover{
+            translate: 0 -4px;
+            box-shadow: 0 8px 16px rgba(43, 43, 43, .4), 0 0 0 2px variables.$color--primary;
+        }
         &__txt{
             margin-top: 0;
             font-size: 1.5em;
-            font-family: $font--title;
+            font-family: variables.$font--title;
         }
         &__number{
             margin: 0;

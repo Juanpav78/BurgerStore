@@ -1,11 +1,13 @@
+@use "../base/variables";
+
 .formulario{
-    background-color: $color--black;
-    color: $color--white;
+    background-color: variables.$color--black;
+    color: variables.$color--white;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    font-family: $font--text;
+    font-family: variables.$font--text;
     font-size: 1.2em;
     padding: 1.2em 1em;
     max-width: 30em;
@@ -19,7 +21,7 @@
     }
     &__legend{
         padding: .2em .5em;
-        border-left:.5em $color--primary solid;
+        border-left:.5em variables.$color--primary solid;
         font-size: 1.2em;
         
     }
@@ -31,7 +33,7 @@
     }
 
     &__input[type="file"]{
-        border: 1px solid $color--white;
+        border: 1px solid variables.$color--white;
         display: inline-block;
         width: 100%;
         cursor: pointer;
@@ -43,7 +45,7 @@
     }
     &__btn{
         border: none;
-        background-color: $color--green;
+        background-color: variables.$color--green;
         font-size: 1.2em;
         width: 10em;
 
@@ -61,7 +63,7 @@
     }
     .formulario__btn{
         width: 10em;
-        background-color: $color--primary;
+        background-color: variables.$color--primary;
         margin: 1em 0;
     }
 }

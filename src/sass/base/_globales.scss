@@ -1,20 +1,30 @@
+@use "sass:color";
+@use "mixins";
+@use "variables";
+
 body{
-    background-color: $color--white;
+    background-color: variables.$color--white;
+}
+// Las imagenes llevan width/height en el HTML (evita saltos al cargar);
+// height: auto mantiene su proporcion cuando el CSS cambia el ancho
+img{
+    max-width: 100%;
+    height: auto;
 }
 h1,h2,h3,h4{
-    font-family: $font--title;
-    color: $color--black;
+    font-family: variables.$font--title;
+    color: variables.$color--black;
     font-weight: 400;
     font-size: 3em;
 }
 a{
-    font-family: $font--title;
+    font-family: variables.$font--title;
     text-decoration: none;
     font-weight: 400;
 }
 
 p, span{
-    font-family: $font--text;
+    font-family: variables.$font--text;
 }
 
 .boton{
@@ -25,9 +35,9 @@ p, span{
     border-radius: 10px;
     box-shadow: 0 4px 4px rgba(43, 43, 43, 0.8);
     cursor: pointer;
-    color: $color--white;
+    color: variables.$color--white;
     font-size: 1.4em;
-    font-family: $font--title;
+    font-family: variables.$font--title;
 
     &:hover{
         box-shadow: 0 2px 2px rgba(43, 43, 43, 0.8);
@@ -39,26 +49,26 @@ p, span{
 
 
 .boton--red{
-    background-color: $color--secondary;
+    background-color: variables.$color--secondary;
     &:hover{
-        background-color: darken($color--secondary, 20%);
-        transition: .3s ease-in-out;
+        background-color: color.adjust(variables.$color--secondary, $lightness: -20%);
+        transition: background-color .3s ease-in-out;
     }
 }
 
 .boton--green{
-    background-color: $color--green;
+    background-color: variables.$color--green;
      &:hover{
-        background-color: darken($color--green, 20%);
-        transition: .3s ease-in-out;
+        background-color: color.adjust(variables.$color--green, $lightness: -20%);
+        transition: background-color .3s ease-in-out;
     }
 }
 
 .boton--yellow{
-    background-color: $color--primary;
+    background-color: variables.$color--primary;
      &:hover{
-        background-color: darken($color--primary, 20%);
-        transition: .3s ease-in-out;
+        background-color: color.adjust(variables.$color--primary, $lightness: -20%);
+        transition: background-color .3s ease-in-out;
     }
 }
 
@@ -72,16 +82,16 @@ p, span{
     border: none;
     border-radius: 50%;
     aspect-ratio: 1 / 1;
-    background-color: $color--primary;
+    background-color: variables.$color--primary;
     font-size: 2.4em;
     padding: .4em;
     cursor: pointer;
     box-shadow: 0 4px 4px rgba(43, 43, 43, 0.8);
-    transition: .3s all ease-in;
+    transition: background-color .3s ease-in, color .3s ease-in, box-shadow .3s ease-in;
     &:hover{
-        background-color: $color--secondary;
-        transition: .3s all ease-in;
-        color: $color--white;
+        background-color: variables.$color--secondary;
+        transition: background-color .3s ease-in, color .3s ease-in, box-shadow .3s ease-in;
+        color: variables.$color--white;
         box-shadow: 0 4px 4px rgba(128, 28, 28, 0.8);
     }
 }
@@ -89,4 +99,10 @@ p, span{
     max-width: 75em;
     width: 100%;
     margin: 0 auto;
+}
+// Titulos de seccion mas pequeños en moviles para que no toquen los bordes
+.menu__title, .domicilio__title, .restaurantes__title{
+    @include mixins.movil {
+        font-size: 2.4em;
+    }
 }

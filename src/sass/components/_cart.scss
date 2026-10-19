@@ -1,59 +1,274 @@
-.cart{
-    background-color: $color--black;
-    width: 20em;
-    height: 100vh;
+@use "../base/mixins";
+@use "../base/variables";
+
+// Fondo oscuro detras del carrito
+.cart__fondo{
+    &[hidden]{
+        display: none;
+    }
     position: fixed;
-    z-index: 5;
+    inset: 0;
+    z-index: 30;
+    background-color: rgba(variables.$color--black, .7);
+}
+
+// Carrito lateral (se abre desde la derecha con Motion)
+.cart{
+    background-color: variables.$color--black;
+    width: 24em;
+    max-width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    position: fixed;
+    z-index: 31;
     top: 0;
-    right: 0em;
-    
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -6px 0 20px rgba(0, 0, 0, .4);
+    translate: 100% 0;
+    visibility: hidden;
+
+    &.active{
+        translate: 0 0;
+        visibility: visible;
+    }
+
+    &__header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1em 1.25em;
+        border-bottom: 2px solid rgba(variables.$color--white, .1);
+    }
+    &__heading{
+        color: variables.$color--white;
+        font-size: 2em;
+        margin: 0;
+    }
+    &__cerrar{
+        display: grid;
+        place-items: center;
+        width: 2.5em;
+        height: 2.5em;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+        color: variables.$color--primary;
+        cursor: pointer;
+        transition: background-color .3s ease, color .3s ease;
+        .icono{
+            width: 1.6em;
+            height: 1.6em;
+        }
+        &:hover{
+            background-color: variables.$color--secondary;
+            color: variables.$color--white;
+        }
+    }
+
     &__contenedor{
+        flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 2em;
+        gap: 1em;
         padding: 1em;
-        height: calc(100vh - 8.875em);
-        overflow-y: overlay;
-
-        &::-webkit-scrollbar {
-            width: 0;
-        }
+        overflow-y: auto;
     }
     &__burger{
-        background-color: $color--white;
-        padding: 1em;
+        background-color: variables.$color--white;
+        padding: .75em;
         display: flex;
-        justify-content: space-evenly;
+        gap: .75em;
         align-items: center;
-        box-shadow: inset 0 0 5px $color--black;
-        border-radius: 2px;
-        &:last-child{
-            margin-bottom: 2em;
-        }
+        box-shadow: inset 0 0 5px variables.$color--black;
+        border-radius: 10px;
     }
     &__img{
-        width: 6em;
+        flex-shrink: 0;
+        width: 5em;
         img{
+            display: block;
             width: 100%;
+            height: auto;
         }
     }
     &__info{
-
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: .35em;
     }
     &__title{
-        font-size: 1.5em;
-        font-family: $font--title;
+        margin: 0;
+        font-size: 1.2em;
+        font-family: variables.$font--title;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     &__price{
+        font-family: variables.$font--title;
         font-size: 1.2em;
-        color: $color--primary;
+        color: variables.$color--primary;
     }
-    &__total{
-        width: 100%;
-        padding: 0.5em 1em;
-        font-size: 1.2em;
-        background-color: $color--primary;
-        color: $color--black;
+    &__fila{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: .5em;
+        .cantidad{
+            background-color: variables.$color--white--dark;
+        }
+    }
+    &__quitar{
+        display: grid;
+        place-items: center;
+        width: 2.25em;
+        height: 2.25em;
+        border: none;
+        border-radius: 50%;
+        background-color: transparent;
+        color: variables.$color--secondary;
+        cursor: pointer;
+        transition: background-color .3s ease, color .3s ease;
+        .icono{
+            width: 1.2em;
+            height: 1.2em;
+        }
+        &:hover{
+            background-color: variables.$color--secondary;
+            color: variables.$color--white;
+        }
+    }
+
+    &__vacio{
+        flex: 1;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+        padding: 2em;
         text-align: center;
+        color: variables.$color--white;
+        img{
+            width: 10em;
+            height: auto;
+            opacity: .85;
+            filter: grayscale(.4) drop-shadow(0 6px 4px rgba(0, 0, 0, .6));
+        }
+        p{
+            font-size: 1.3em;
+            margin: 0;
+        }
+        .boton{
+            width: auto;
+        }
+    }
+    &.vacio{
+        .cart__vacio{
+            display: flex;
+        }
+        .cart__contenedor, .cart__pedido{
+            display: none;
+        }
+    }
+
+    &__pedido{
+        display: flex;
+        flex-direction: column;
+        gap: .6em;
+        padding: 1em 1.25em 1.25em;
+        background-color: #262425;
+        border-top: 2px solid rgba(variables.$color--white, .1);
+    }
+    &__resumen{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: variables.$color--white;
+        font-family: variables.$font--title;
+        font-size: 1.4em;
+        &__total{
+            font-family: variables.$font--title;
+            color: variables.$color--primary;
+            font-size: 1.3em;
+        }
+    }
+    &__input{
+        width: 100%;
+        box-sizing: border-box;
+        padding: .7em .9em;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        font-family: variables.$font--text;
+        font-size: 1em;
+        resize: none;
+        &:focus{
+            outline: none;
+            border-color: variables.$color--primary;
+        }
+    }
+    &__whatsapp{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .5em;
+        width: 100%;
+        margin-top: .25em;
+        font-size: 1.2em;
+        .icono{
+            width: 1.3em;
+            height: 1.3em;
+        }
+    }
+    &__vaciar{
+        border: none;
+        background: none;
+        color: rgba(variables.$color--white, .6);
+        font-family: variables.$font--text;
+        text-decoration: underline;
+        cursor: pointer;
+        &:hover{
+            color: variables.$color--secondary;
+        }
+    }
+
+    @include mixins.movil {
+        width: 100%;
+    }
+}
+
+// Mensaje flotante ("Añadido al carrito")
+.toast{
+    position: fixed;
+    z-index: 40;
+    left: 50%;
+    bottom: 1.5em;
+    translate: -50% 0;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    max-width: calc(100% - 2em);
+    box-sizing: border-box;
+    padding: .8em 1.4em;
+    border-radius: 999px;
+    background-color: variables.$color--black;
+    color: variables.$color--white;
+    font-family: variables.$font--text;
+    font-weight: 700;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, .35);
+    border: 2px solid variables.$color--primary;
+    // no bloquea los clics de lo que haya debajo
+    pointer-events: none;
+    &[hidden]{
+        display: none;
+    }
+    .icono{
+        width: 1.2em;
+        height: 1.2em;
+        color: variables.$color--primary;
     }
 }

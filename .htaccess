@@ -1,0 +1,15 @@
+# No mostrar el listado de archivos de las carpetas
+Options -Indexes
+
+# Bloquear archivos ocultos (.env, .htaccess, .git...)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Bloquear archivos que no deben verse desde el navegador
+<FilesMatch "\.(sql|md|json|lock|log|psd|ai|scss|example)$">
+    Require all denied
+</FilesMatch>
+
+# Bloquear carpetas internas (codigo PHP, base de datos, dependencias)
+RedirectMatch 403 ^/(includes|classes|database|vendor|node_modules|scripts|src/sass)(/|$)

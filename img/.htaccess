@@ -1,0 +1,4 @@
+# Carpeta de imagenes subidas desde el admin: nunca ejecutar codigo aqui
+<FilesMatch "\.(php|phtml|phar|php\d)$">
+    Require all denied
+</FilesMatch>

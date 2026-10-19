@@ -1,6 +1,9 @@
+@use "../base/mixins";
+@use "../base/variables";
+
 .footer{
-    background-color: $color--black;
-    color: $color--white;
+    background-color: variables.$color--black;
+    color: variables.$color--white;
     padding: 1em 0;
     
     margin-top: 2em;
@@ -9,7 +12,7 @@
     }
 
     &__title{
-        color: $color--white;
+        color: variables.$color--white;
         font-size: 1.5em;
         text-align: center;
     }
@@ -18,10 +21,71 @@
        padding: 2em;
     }
 
+    &__text{
+        text-align: center;
+        color: rgba(variables.$color--white, .8);
+        line-height: 1.5;
+    }
+    &__redes{
+        display: flex;
+        justify-content: center;
+        gap: 1em;
+    }
+    &__red{
+        display: grid;
+        place-items: center;
+        width: 2.8em;
+        height: 2.8em;
+        border-radius: 50%;
+        background-color: variables.$color--primary;
+        color: variables.$color--black;
+        transition: background-color .3s ease, color .3s ease;
+        .icono{
+            width: 1.4em;
+            height: 1.4em;
+        }
+        &:hover{
+            background-color: variables.$color--secondary;
+            color: variables.$color--white;
+        }
+    }
+    &__datos{
+        list-style: none;
+        padding: 0;
+        margin: 1em 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .6em;
+        font-family: variables.$font--text;
+        li{
+            display: flex;
+            align-items: center;
+            gap: .5em;
+        }
+        .icono{
+            width: 1.2em;
+            height: 1.2em;
+            color: variables.$color--primary;
+        }
+        a{
+            font-family: variables.$font--text;
+            color: variables.$color--white;
+            &:hover{
+                color: variables.$color--primary;
+            }
+        }
+    }
+
     &__copy{
         text-align: center;
     }
-    &__text{
-
+    @include mixins.tablet {
+        &__contenedor{
+            flex-direction: column;
+        }
+        &__social, &__help{
+            padding: 1em 2em;
+        }
     }
 }

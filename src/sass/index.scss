@@ -1,25 +1,25 @@
-@import 'base/normalize';
-@import 'base/variables';
-@import 'base/globales';
-@import 'base/mixins';
+@use 'base/normalize';
+@use 'base/variables';
+@use 'base/globales';
+@use 'base/mixins';
 
 //components
-@import 'components/cards';
-@import 'components/alerta';
-@import 'components/formulario';
-@import 'components/cart';
+@use 'components/cards';
+@use 'components/alerta';
+@use 'components/formulario';
+@use 'components/cart';
 //layout
-@import 'layout/header';
+@use 'layout/header';
 
-@import 'layout/home';
-@import 'layout/menu';
-@import 'layout/banner';
-@import 'layout/findus';
-@import 'layout/domicilio';
-@import 'layout/restaurante';
+@use 'layout/home';
+@use 'layout/menu';
+@use 'layout/banner';
+@use 'layout/findus';
+@use 'layout/domicilio';
+@use 'layout/restaurante';
 
-@import 'layout/footer';
+@use 'layout/footer';
 
 //admin
-@import 'admin/login';
-@import 'admin/crear';
+@use 'admin/login';
+@use 'admin/crear';

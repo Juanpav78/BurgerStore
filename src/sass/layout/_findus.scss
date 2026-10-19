@@ -1,3 +1,5 @@
+@use "../base/mixins";
+
 .findUs{
     
     &__contenedor{
@@ -16,7 +18,7 @@
         }
     }
 
-    @include desktop{
+    @include mixins.desktop{
         &__contenedor{
             flex-direction: column-reverse;
         }

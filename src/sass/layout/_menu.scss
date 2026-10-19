@@ -1,5 +1,7 @@
+@use "../base/variables";
+
 .menu{
-    background-color: $color--white;
+    background-color: variables.$color--white;
     padding-bottom: 4em;
     .menu__title{
         text-align: center;
@@ -8,8 +10,17 @@
     .menu__contenedor{
         display: grid;
         justify-items: center;
-        grid-template-columns: repeat(auto-fit, minmax(23em, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(min(19em, 100%), 1fr));
         gap: 2em;
-        row-gap: 4em;
+        // espacio extra para la hamburguesa que sobresale de cada tarjeta
+        row-gap: 6em;
+        padding: 3em 1em 0;
+        box-sizing: border-box;
+    }
+
+    .menu__vacio{
+        grid-column: 1 / -1;
+        font-size: 1.3em;
+        text-align: center;
     }
 }

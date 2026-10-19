@@ -1,70 +1,497 @@
-.main--admin{
+@use "../base/mixins";
+@use "../base/variables";
+
+$gris: rgba(variables.$color--black, .6);
+
+.admin{
     max-width: 75em;
     margin: 0 auto;
+    padding: 2em 1em 4em;
+    box-sizing: border-box;
 
-    &__title{
-
-    }
-    &__btn{
-        display: block;
-        margin: 2em 0;
-    }
-    &__contenedor{
+    &__encabezado{
         display: flex;
-        justify-content: center;
-        .formulario, .preview{
-            flex: 1;
-        }
-
-        .card--burger{
-            margin:   auto;
-        }
-
-
+        flex-wrap: wrap;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 1em;
     }
-    
+    &__saludo{
+        margin: 0;
+        color: $gris;
+        font-size: 1.1em;
+    }
+    &__titulo{
+        font-size: 2.6em;
+        margin: .15em 0 .4em;
+    }
+    &__acciones{
+        display: flex;
+        flex-wrap: wrap;
+        gap: .75em;
+    }
+    &__boton{
+        display: inline-flex;
+        align-items: center;
+        gap: .4em;
+        width: auto;
+        font-size: 1.1em;
+        .icono{
+            width: 1.1em;
+            height: 1.1em;
+        }
+    }
+    &__volver{
+        display: inline-flex;
+        align-items: center;
+        gap: .4em;
+        color: variables.$color--black;
+        font-size: 1.1em;
+        transition: color .3s ease;
+        .icono{
+            width: 1.2em;
+            height: 1.2em;
+        }
+        &:hover{
+            color: variables.$color--secondary;
+        }
+    }
+
+    /* ---------- Tarjetas de estadisticas ---------- */
+    &__stats{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(9em, 100%), 1fr));
+        gap: 1em;
+        margin: 1.5em 0 2em;
+    }
+
+    /* ---------- Listado ---------- */
+    &__panel{
+        background-color: variables.$color--white;
+        border-radius: 10px;
+        box-shadow: 0 4px 16px rgba(43, 43, 43, .12);
+        padding: 1.25em;
+        @include mixins.movil {
+            padding: .75em;
+        }
+    }
+    &__toolbar{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: .75em;
+        margin-bottom: .5em;
+    }
+    &__buscar, &__filtro{
+        border: 2px solid variables.$color--white--dark;
+        border-radius: 999px;
+        background-color: variables.$color--white;
+        font-family: variables.$font--text;
+        font-size: 1em;
+        transition: border-color .3s ease;
+        &:focus-within, &:focus{
+            outline: none;
+            border-color: variables.$color--primary;
+        }
+    }
+    &__buscar{
+        flex: 1;
+        min-width: 14em;
+        display: flex;
+        align-items: center;
+        gap: .5em;
+        padding: .55em 1em;
+        .icono{
+            width: 1.2em;
+            height: 1.2em;
+            color: $gris;
+        }
+        input{
+            flex: 1;
+            border: none;
+            background: none;
+            font-family: inherit;
+            font-size: inherit;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+    &__filtro{
+        padding: .65em 1em;
+        cursor: pointer;
+    }
+    &__contador{
+        font-family: variables.$font--text;
+        color: $gris;
+    }
+    &__vacio{
+        text-align: center;
+        font-size: 1.2em;
+        color: $gris;
+        padding: 2em 0;
+    }
+
+    /* ---------- Formulario de producto ---------- */
+    &__editor{
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        gap: 3em;
+        align-items: start;
+        margin-top: 1em;
+
+        @include mixins.tablet {
+            grid-template-columns: 1fr;
+        }
+    }
+    &__preview{
+        position: sticky;
+        top: 2em;
+        &__label{
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            font-weight: 700;
+            color: $gris;
+            margin: 0;
+        }
+    }
+}
+
+.body--admin{
+    background-color: #f4f4f2;
+}
+
+.stat{
+    display: flex;
+    flex-direction: column;
+    gap: .25em;
+    padding: 1.25em 1.5em;
+    background-color: variables.$color--black;
+    border-radius: 10px;
+    border-left: .4em solid variables.$color--primary;
+    box-shadow: 0 4px 10px rgba(43, 43, 43, .25);
+
+    &__valor{
+        font-family: variables.$font--title;
+        font-size: 2.2em;
+        color: variables.$color--primary;
+    }
+    &__nombre{
+        color: variables.$color--white;
+        font-size: 1.05em;
+    }
+}
+
+.pill{
+    display: inline-block;
+    padding: .25em .9em;
+    border-radius: 999px;
+    background-color: rgba(variables.$color--primary, .18);
+    color: variables.$color--primary;
+    font-weight: 700;
+    font-size: .9em;
+    text-transform: capitalize;
+}
+
+.table__wrapper{
+    overflow-x: auto;
 }
 
 .table{
     width: 100%;
-    border-spacing: 0 5px;
-    color: $color--white;
-    font-family: $font--text;
+    border-collapse: separate;
+    border-spacing: 0 .6em;
+    color: variables.$color--white;
+    font-family: variables.$font--text;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.05em;
+
     &__name, &__name--head{
-        
-        padding: 1em;
+        padding: .9em 1em;
     }
 
     &__name--head{
-        background-color:$color--black;
+        background-color: variables.$color--black;
+        font-family: variables.$font--title;
+        font-weight: 400;
+        &:first-child{
+            border-radius: 10px 0 0 10px;
+            text-align: left;
+        }
+        &:last-child{
+            border-radius: 0 10px 10px 0;
+        }
     }
 
     &__producto{
-        background-color: $color--primary;
+        background-color: variables.$color--black;
+        transition: box-shadow .3s ease;
+        td:first-child{
+            border-radius: 10px 0 0 10px;
+        }
+        td:last-child{
+            border-radius: 0 10px 10px 0;
+        }
+        &:hover{
+            box-shadow: 0 0 0 2px variables.$color--primary;
+        }
     }
 
+    &__info{
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        text-align: left;
+    }
     &__img{
-        width: 10rem;
+        width: 5em;
+        height: 4em;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 3px rgba(0, 0, 0, .6));
+    }
+    &__nombre{
+        display: block;
+        font-family: variables.$font--title;
+        font-weight: 400;
+        font-size: 1.25em;
+    }
+    &__id{
+        color: rgba(variables.$color--white, .5);
+        font-size: .9em;
+    }
+    &__precio{
+        font-family: variables.$font--title;
+        color: variables.$color--primary;
+        font-size: 1.3em;
+    }
+    &__fecha{
+        color: rgba(variables.$color--white, .7);
     }
 
     &__btn{
-        display: flex;
-        flex-direction: column;
-        gap: .5em;
+        padding: .9em 1em;
+        white-space: nowrap;
         .boton{
-            display: block;
-            width: auto;
+            margin: .2em;
+        }
+    }
 
-            input[type="submit"]{
-                border: none;
-                background-color: transparent;
-                color: $color--white;
-                font-family: $font--title;
-                cursor: pointer;
+    // En pantallas pequeñas cada fila se convierte en una tarjeta
+    @include mixins.tablet {
+        display: block;
+        border-spacing: 0;
+        font-size: 1em;
+        thead{
+            display: none;
+        }
+        tbody{
+            display: grid;
+            gap: 1em;
+        }
+        &__producto{
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: .25em;
+            td{
+                min-width: 0;
+            }
+            text-align: left;
+            padding: 1em;
+            border-radius: 10px;
+            td{
+                border-radius: 0 !important;
             }
         }
-        
+        &__name, &__btn{
+            padding: .4em;
+        }
+        &__info{
+            grid-column: 1 / -1;
+        }
+        &__name[data-label]{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: .2em;
+            &::before{
+                content: attr(data-label);
+                font-family: variables.$font--text;
+                font-size: .75rem;
+                color: rgba(variables.$color--white, .5);
+                text-transform: uppercase;
+            }
+        }
+        &__btn{
+            grid-column: 1 / -1;
+            display: flex;
+            gap: .5em;
+            white-space: normal;
+            .boton{
+                margin: 0;
+                flex: 1;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+// Botones con icono del panel (editar / borrar)
+.boton--icono{
+    display: inline-flex;
+    align-items: center;
+    gap: .35em;
+    width: auto;
+    padding: .45em .9em;
+    font-size: .95em;
+    .icono{
+        width: 1.1em;
+        height: 1.1em;
+    }
+}
+
+/* ---------- Dialogo de confirmacion ---------- */
+.confirmar{
+    border: none;
+    border-radius: 10px;
+    padding: 0;
+    background-color: variables.$color--black;
+    color: variables.$color--white;
+    max-width: min(26em, calc(100% - 2em));
+    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
+
+    &::backdrop{
+        background-color: rgba(variables.$color--black, .8);
+    }
+    &__contenido{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 2em;
+    }
+    &__icono{
+        width: 3.5em;
+        height: 3.5em;
+        color: variables.$color--secondary;
+    }
+    &__titulo{
+        color: variables.$color--white;
+        font-size: 2em;
+        margin: .3em 0 0;
+    }
+    &__texto{
+        font-size: 1.1em;
+        strong{
+            color: variables.$color--primary;
+        }
+    }
+    &__botones{
+        display: flex;
+        gap: 1em;
+        margin-top: .5em;
+        .boton{
+            width: auto;
+        }
+    }
+}
+
+/* ---------- Formulario de producto ---------- */
+.formulario--admin{
+    max-width: none;
+    margin: 0;
+    align-items: stretch;
+    box-sizing: border-box;
+
+    .formulario__fs{
+        box-sizing: border-box;
+        min-width: 0;
+        margin: 0;
+    }
+    .formulario__label{
+        margin-top: .6em;
+        padding: .3em 0;
+    }
+    .formulario__input{
+        width: 100%;
+        box-sizing: border-box;
+        border: 2px solid transparent;
+        font-family: variables.$font--text;
+        font-size: 1em;
+        transition: border-color .3s ease;
+        &:focus{
+            outline: none;
+            border-color: variables.$color--primary;
+        }
+    }
+    textarea.formulario__input{
+        resize: vertical;
+    }
+    .formulario__fila{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1em;
+        @include mixins.movil {
+            grid-template-columns: 1fr;
+        }
+    }
+    .formulario__campo{
+        display: flex;
+        flex-direction: column;
+    }
+    .formulario__ayuda{
+        margin-top: .4em;
+        color: rgba(variables.$color--white, .6);
+        &.ok{
+            color: variables.$color--green;
+        }
+    }
+    .formulario__btn{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .4em;
+        align-self: center;
+        width: auto;
+        margin: .5em 0;
+        .icono{
+            width: 1.1em;
+            height: 1.1em;
+        }
+    }
+}
+
+.dropzone{
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    border: 2px dashed rgba(variables.$color--white, .35);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: border-color .3s ease, background-color .3s ease;
+
+    &:hover, &.arrastrando{
+        border-color: variables.$color--primary;
+        background-color: rgba(variables.$color--primary, .08);
+    }
+    &__preview{
+        width: 6em;
+        height: 5em;
+        object-fit: contain;
+        filter: drop-shadow(0 4px 3px rgba(0, 0, 0, .6));
+    }
+    &__texto{
+        display: flex;
+        flex-direction: column;
+        gap: .2em;
+        .icono{
+            width: 2em;
+            height: 2em;
+            color: variables.$color--primary;
+        }
+        small{
+            color: rgba(variables.$color--white, .6);
+        }
     }
 }

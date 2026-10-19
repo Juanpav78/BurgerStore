@@ -1,15 +1,25 @@
-<?php 
+<?php
 
 require 'includes/app.php';
-    $db = conectarDB();
+
+use App\Usuario;
+
+    // Si ya inicio sesion no tiene sentido mostrar el login
+    if(isAuth()){
+        redirigir('/admin');
+    }
 
     $errores = [];
-    if($_SERVER['REQUEST_METHOD'] === 'POST'){  
+    $email = '';
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    $email = mysqli_real_escape_string($db, filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
-    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $email = trim($_POST['email'] ?? '');
+    $password = $_POST['password'] ?? '';
 
-    if(!$email){
+    if(!csrfValido()){
+        $errores[]= "La sesión expiró, vuelve a intentarlo";
+    }
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $errores[]= "el Email es obligatorio o no es valido";
     }
     if(!$password){
@@ -17,58 +27,52 @@ require 'includes/app.php';
     }
 
     if(empty($errores)){
-        //revisar si el usuario existe
-        $query = "SELECT * FROM usuarios WHERE email = '{$email}'";
-        $resultado = mysqli_query($db, $query);
+        //revisar si el usuario existe y si el password concuerda (consulta preparada)
+        $usuario = Usuario::findByEmail($email);
 
-        if($resultado->num_rows){
-         //revisar si el password concuerda
-         $usuario = mysqli_fetch_assoc(($resultado));
-         $auth = password_verify($password, $usuario['password']);
-            var_dump($auth);
-         if($auth){
-            session_start();
-            $_SESSION['usuario'] = $usuario['email'];
+        if($usuario && $usuario->comprobarPassword($password)){
+            // Nuevo id de sesion para evitar robo de sesion
+            session_regenerate_id(true);
+            $_SESSION['usuario'] = $usuario->email;
             $_SESSION['login'] = true;
-            header('Location: /admin');
-         }
-        }else{
-            $errores[]= "El usuario no existe";
+            redirigir('/admin');
         }
-       
+        // Mismo mensaje en ambos casos para no revelar que emails existen
+        $errores[]= "Email o password incorrectos";
     };
 
 };
 
-    includeTemplate("header");
+    includeTemplate("header", false, ['admin' => true, 'titulo' => 'Iniciar sesión | Burger Store']);
 
 ?>
 
 <main class="login" >
     <h1 class="login__title">Iniciar sesion</h1>
-    <?php 
+    <?php
     foreach($errores as $error) :
     ?>
     <div class="alert warning">
-        <?php echo $error; ?>
+        <?php echo s($error); ?>
     </div>
-    <?php 
+    <?php
     endforeach;
     ?>
     <form class="formulario formulario--login" method="POST">
-        <img class="formulario__img" src="/src/img/logo.svg" alt="">
+        <?php echo csrfInput(); ?>
+        <img class="formulario__img" src="/src/img/Logo.svg" alt="logo burgershop" width="240" height="153">
 
         <label class="formulario__label" for="email">Email: </label>
-        <input class="formulario__input" name="email" id="email" type="text" placeholder="email" required>
+        <input class="formulario__input" name="email" id="email" type="email" placeholder="email" value="<?php echo s($email); ?>" autocomplete="username" required>
 
         <label class="formulario__label" for="password">Clave: </label>
-        <input class="formulario__input" name="password" id="password" type="password" required placeholder="password">
+        <input class="formulario__input" name="password" id="password" type="password" required placeholder="password" autocomplete="current-password">
 
         <input class="formulario__btn boton " type="submit" value="Iniciar sesión">
     </form>
 </main>
 
-<?php 
+<?php
 
-    includeTemplate("footer");
+    includeTemplate("footer", false, ['admin' => true]);
 ?>
