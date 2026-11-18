@@ -8,6 +8,21 @@
 ![Gulp](https://img.shields.io/badge/Gulp-CF4647?style=flat&logo=gulp&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
 
+🔗 **Demo:** [burgerstoresphp.freehosting.dev](https://burgerstoresphp.freehosting.dev/)
+
+![BurgerStore — vista de escritorio](https://res.cloudinary.com/degdhu5ep/image/upload/w_1400,q_auto,f_auto/v1792377001/images/e7oqbvqn5mad3cpsm7ft.png)
+
+<details>
+<summary>📸 Más capturas</summary>
+
+![BurgerStore — captura 1](https://res.cloudinary.com/degdhu5ep/image/upload/w_1400,q_auto,f_auto/v1792377001/images/azr0wh9kzl8ttvqvcpty.png)
+![BurgerStore — captura 2](https://res.cloudinary.com/degdhu5ep/image/upload/w_1400,q_auto,f_auto/v1792377001/images/gfr8dql6uvax8gbyofvk.png)
+![BurgerStore — captura 3](https://res.cloudinary.com/degdhu5ep/image/upload/w_1400,q_auto,f_auto/v1792377001/images/qmvbov9u9m4jiiratnzz.png)
+
+<p align="center"><img src="https://res.cloudinary.com/degdhu5ep/image/upload/w_400,q_auto,f_auto/v1793914543/images/loviv7bidh4oh2ahpbsa.jpg" alt="BurgerStore — vista móvil" width="300"></p>
+
+</details>
+
 ## ✨ Funcionalidades
 
 - **Sitio público:** inicio, menú de hamburguesas, información del restaurante, domicilios y sección "Encuéntranos".
